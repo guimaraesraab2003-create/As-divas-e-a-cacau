@@ -6,15 +6,15 @@
 
 ## Equipe
 
-**Nome do time:** ____________________
+**Nome do time:** As divas e a cacau
 
 | Nome | Matrícula | Usuário do GitHub |
 | --- | --- | --- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Emanuele Duque | 2408437 | emanuele-duque1 |
+| Mikaellen cavalcante  | 2401626 | mikaellen1503 |
+| Raab Guimarães | 2408518 | guimaraesraab2003-create |
+| Ryan brito  | 2403219 | Ryanssj27 |
+| Sabrina Giovanna | 2406935 | gigisabrina |
 
 ## O cenário
 
