@@ -3,7 +3,7 @@ import datetime as dt
 import pandas as pd
 import psycopg2
 
-ARQUIVO = os.getenv("EXCEL_PATH", "dados/base_teste.xlsx")
+ARQUIVO = C:\Users\Windows10\Downloads ("EXCEL_PATH", "dados/base_teste.xlsx")
 DB = {
     "host": os.getenv("DB_HOST", "localhost"),
     "port": int(os.getenv("DB_PORT", 5432)),
