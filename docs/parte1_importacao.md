@@ -5,8 +5,7 @@
 ## Estrutura da planilha
 
 | Aba | Coluna | Tipo | Observação |
-| | Aba | Coluna | Tipo | Observação |
-| --- | --- | --- | --- |
+
 | `fornecedor` | `idfornecedor` | `VARCHAR(25)` | Chave primária. Na planilha vinha como `F1`, `F2`... (corrigido erro de typo `idforncedor` do DDL original). |
 | `fornecedor` | `razao_social` | `VARCHAR(255)` | Razão social do fornecedor. |
 | `produtos_filial` | `filial_id` | `INT` | Identificador da filial (todos valor 1 na amostra). |
