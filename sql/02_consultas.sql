@@ -1,6 +1,4 @@
--- ---------------------------------------------------------------------
--- 1. Total vendido em quantidade e em R$ por produto em Fevereiro de 2025
--- ---------------------------------------------------------------------
+--1. Total vendido em quantidade e em R$ por produto em Fevereiro de 2025
 SELECT 
     v.produto_id,
     COALESCE(p.descricao, 'Produto Sem Cadastro') AS descricao_produto,
@@ -18,10 +16,7 @@ ORDER BY
     v.produto_id;
 
 
--- ---------------------------------------------------------------------
 -- 2. Produtos requisitados (pedido de compra) e não recebidos (entradas_mercadoria)
--- ---------------------------------------------------------------------
-
 -- Abordagem 1: Produtos em pedido_compra cujas ordens de compra não possuem registro em entradas_mercadoria
 SELECT DISTINCT
     pc.pedido_id,
