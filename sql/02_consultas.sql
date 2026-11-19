@@ -49,4 +49,4 @@ GROUP BY
     pc.descricao_produto
 HAVING COALESCE(SUM(em.qtde_recebida), 0) < SUM(pc.qtde_pedida)
 ORDER BY 
-    pc.produto_id;--
+    pc.produto_id;
