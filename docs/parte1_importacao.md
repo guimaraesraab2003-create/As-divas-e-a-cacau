@@ -74,14 +74,34 @@
 
 ## Tratamentos aplicados aos dados
 
-(conversão de tipos, validações, normalizações)
+Descarte de colunas espúrias (pedido_compra): A aba pedido_compra possuía 11 colunas adicionais à direita sem cabeçalho válido (Unnamed: 12 a Unnamed: 22, colunas M a W no Excel) contendo dados deslocados nas linhas 22 a 30. Essas colunas foram ignoradas no mapeamento da importação para manter apenas os 12 campos estruturais da tabela.
+
+Normalização de chaves alfanuméricas (idfornecedor / fornecedor_id):
+
+Na tabela produtos_filial, a coluna idfornecedor veio preenchida como texto (F1 a F20), exigindo conversão/tratamento como VARCHAR(25) em vez de INT (como constava no DDL original com erro).
+
+Na tabela pedido_compra, os códigos de fornecedor vieram como inteiros (1 a 20) e foram padronizados para o formato textual com prefixo 'F' (F1 a F20) para manter consistência de domínio com a tabela fornecedor.
+
+Cálculo e preenchimento de campo derivado (qtde_pendente): A coluna qtde_pendente existente no DDL de pedido_compra não constava na planilha base_teste.xlsx; ela foi calculada durante a carga pela expressão qtde_pedida - qtde_entregue.
+
+Conversão de datas e horários:
+
+Datas armazenadas como datetime ou número serial do Excel (data_emissao, data_pedido, data_entrega, data_entrada) foram convertidas e padronizadas para o tipo DATE (YYYY-MM-DD).
+
+O campo horariomov da aba venda foi normalizado como texto no padrão HH:MM:SS (08:00:00), com valor padrão '00:00:00' para registros nulos.
+
+Conversão numérica e precisão decimal: Campos de quantidade e valores monetários (qtde_vendida, valor_unitario, estoque, preco_unitario, preco_compra, preco_venda, qtde_pedida, qtde_entregue, qtde_recebida, custo_unitario) foram convertidos para NUMERIC(12, 4) / DECIMAL(12, 4) para preservar valores fracionários existentes na base (como 38.60, 20.04, 2.86, 37.11 e 3.11 em venda).
+
+Tratamento de nulos, espaços e duplicidades: Aplicação de TRIM em campos textuais, definição de valores padrão (DEFAULT) para campos obrigatórios de chave composta (filial_id = 1, item = 1, ordem_compra = 0) e proteção contra duplicidade na carga (ON CONFLICT DO NOTHING).
+
+Preservação controlada de anomalias para auditoria (Parte 4): Inconsistências de negócio presentes na planilha (como vendas para produtos P21 a P28 sem cadastro em produtos_filial, pedidos com ordem_compra = 0 e registros com data_entrega < data_pedido) não foram excluídas na carga, sendo mantidas íntegras no banco para serem evidenciadas e validadas com o cliente na Etapa 3.
 
 ## Conferência final
 
 | Tabela | Linhas na planilha | Linhas no banco |
 | --- | --- | --- |
-| fornecedor |  |  |
-| produtos_filial |  |  |
-| pedido_compra |  |  |
-| entradas_mercadoria |  |  |
-| venda |  |  |
+| fornecedor | 20 | 20 |
+| produtos_filial | 20 | 20 |
+| pedido_compra | 29 | 29 |
+| entradas_mercadoria | 20 | 20 |
+| venda | 33 | 33 |
