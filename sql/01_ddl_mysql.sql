@@ -1,6 +1,9 @@
 -- DDL corrigido para MySQL
 -- MySQL
 
+CREATE DATABASE vendas_db;
+USE vendas_db;
+
 DROP TABLE IF EXISTS venda;
 DROP TABLE IF EXISTS entradas_mercadoria;
 DROP TABLE IF EXISTS pedido_compra;
